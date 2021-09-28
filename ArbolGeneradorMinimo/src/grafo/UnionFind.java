@@ -9,7 +9,6 @@ public class UnionFind {
 	 public void union(int i,int j) {
 		 int sumaDeComponentes = A.get(A.get(i).getRoot()).getCantComponente() + A.get(A.get(j).getRoot()).getCantComponente();
 //	 if(A.get(i).getCantComponente() == A.get(j).getCantComponente()) {
-		 //kbfkjbadfkj
 		 pathCompression(i,A.get(j).getRoot(),sumaDeComponentes);
 //	 }
 	}
