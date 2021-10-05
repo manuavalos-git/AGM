@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+
+
 public class BFStest {
 
 	@Test (expected = IllegalArgumentException.class)

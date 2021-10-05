@@ -9,7 +9,7 @@ public class BFS {
 	private static ArrayList<Integer> L;
 	private static boolean[] marcados;
 	
-	public static boolean esConexo(Grafo g) {
+	public static boolean esConexo(Grafos g) {
 		if(g==null) {
 			throw new IllegalArgumentException("Se intento consultar un grafo que es null !!");
 		}
@@ -18,7 +18,7 @@ public class BFS {
 		}
 		return alcanzables(g,0).size()==g.vertices();
 	}
-	public static Set<Integer> alcanzables(Grafo g, int origen){
+	public static Set<Integer> alcanzables(Grafos g, int origen){
 		Set<Integer> ret= new HashSet<Integer>();
 		inicializar(g,origen);
 		
@@ -31,7 +31,7 @@ public class BFS {
 		}
 		return ret;
 	}
-	private static void agregarVecinosPendientes(Grafo g, int i) {
+	private static void agregarVecinosPendientes(Grafos g, int i) {
 		for(int vertice : g.vecinos(i)) {
 			if(marcados[vertice]==false && L.contains(vertice)==false) {
 				L.add(vertice);
@@ -39,12 +39,10 @@ public class BFS {
 		}
 		
 	}
-	private static void inicializar(Grafo g, int origen) {
+	private static void inicializar(Grafos g, int origen) {
 		L=new ArrayList<Integer>();
 		L.add(origen);
 		marcados=new boolean [g.vertices()];
 		
 	}
-	
-	//jlahnscl
 }
