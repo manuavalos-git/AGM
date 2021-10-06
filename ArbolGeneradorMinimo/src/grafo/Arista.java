@@ -32,6 +32,6 @@ public class Arista{
 			return false;
 		}
 		Arista otro= (Arista)obj;
-		return(this.peso==otro.peso && ((this.verticeA==otro.verticeA && this.verticeB==otro.verticeB)||(this.verticeA==otro.verticeB && this.verticeB==otro.verticeA))) ;
+		return( (this.verticeA==otro.verticeA && this.verticeB==otro.verticeB)||(this.verticeA==otro.verticeB && this.verticeB==otro.verticeA)) ;
 	}
 }

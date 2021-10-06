@@ -10,7 +10,7 @@ public class UnionFind {
 		 inicializar(i);
 	 }
 	 private void inicializar(int i){
-		 for(int j=0;j<=i;j++) {
+		 for(int j=0;j<i;j++) {
 			 this.padres.add(new Vertice(j));
 		 }
 	 }

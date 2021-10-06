@@ -20,8 +20,21 @@ public class BFStest {
 		assertTrue(BFS.esConexo(g));
 	}
 	@Test
+	public void vacioPesoTest() {
+		GrafoConPeso g=new GrafoConPeso(0);
+		assertTrue(BFS.esConexo(g));
+	}
+	@Test
 	public void alcanzablesTest() {
 		Grafo g=inicializarGrafo();
+		Set<Integer> alcanzables = BFS.alcanzables(g,0);
+		int[] esperados = {0,1,2,3};
+		
+		Assert.iguales(esperados, alcanzables);
+	}
+	@Test
+	public void alcanzablesPesoTest() {
+		GrafoConPeso g=inicializarGrafoPeso();
 		Set<Integer> alcanzables = BFS.alcanzables(g,0);
 		int[] esperados = {0,1,2,3};
 		
@@ -33,9 +46,21 @@ public class BFStest {
 		assertFalse(BFS.esConexo(g));
 	}
 	@Test
+	public void noConexoPesoTest() {
+		GrafoConPeso g=inicializarGrafoPeso();
+		assertFalse(BFS.esConexo(g));
+	}
+	@Test
 	public void ConexoTest() {
 		Grafo g=inicializarGrafo();
 		g.agregarArista(3, 4);
+		
+		assertTrue(BFS.esConexo(g));
+	}
+	@Test
+	public void ConexoPesoTest() {
+		GrafoConPeso g=inicializarGrafoPeso();
+		g.agregarArista(3, 4, 2);
 		
 		assertTrue(BFS.esConexo(g));
 	}
@@ -44,6 +69,13 @@ public class BFStest {
 		grafo.agregarArista(0, 1);
 		grafo.agregarArista(0, 2);
 		grafo.agregarArista(2, 3);
+		return grafo;
+	}
+	private GrafoConPeso inicializarGrafoPeso() {
+		GrafoConPeso grafo=new GrafoConPeso(5);
+		grafo.agregarArista(0, 1,1);
+		grafo.agregarArista(0, 2,2);
+		grafo.agregarArista(2, 3,3);
 		return grafo;
 	}
 }

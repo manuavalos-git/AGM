@@ -20,5 +20,4 @@ public class Vertice {
 	public void setCantComponente(int componente) {
 		this.componente = componente;
 	}
-	
 }

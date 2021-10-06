@@ -21,6 +21,34 @@ public class Kruskal {
 					for(int i=0;i<aristasGrafo.size();i++) {
 						if(!BFS.alcanzables(grafoRet,aristasGrafo.get(i).getVerticeA()).contains(aristasGrafo.get(i).getVerticeB())) {
 							grafoRet.agregarArista(aristasGrafo.get(i).getVerticeA(),aristasGrafo.get(i).getVerticeB(),aristasGrafo.get(i).getPeso());
+							i=aristasGrafo.size();
+							cantAristasRet++;
+						}
+					}
+				}
+				return grafoRet;
+			}
+			
+		}
+		public GrafoConPeso kruskalUnion(GrafoConPeso grafo) {
+			if(grafo.vertices()==0 || grafo.vertices()==1) {
+				return grafo;
+			}
+			if(!BFS.esConexo(grafo)){
+				throw new IllegalArgumentException("El grafo debe ser conexo" );
+			}
+			else {
+				ArrayList <Arista> aristasGrafo=grafo.getListaDeAristas();
+				ordenarListaPorPeso(aristasGrafo);
+				int cantAristasRet=0;
+				GrafoConPeso grafoRet=new GrafoConPeso(grafo.vertices());
+				UnionFind unionFind=new UnionFind(grafo.vertices());
+				while(cantAristasRet<grafo.vertices()) {
+					for(int i=0;i<aristasGrafo.size();i++) {
+						if(!unionFind.find(aristasGrafo.get(i).getVerticeA(), aristasGrafo.get(i).getVerticeB())) {
+							unionFind.union(aristasGrafo.get(i).getVerticeA(), aristasGrafo.get(i).getVerticeB());
+							grafoRet.agregarArista(aristasGrafo.get(i).getVerticeA(),aristasGrafo.get(i).getVerticeB(),aristasGrafo.get(i).getPeso());
+							i=aristasGrafo.size();
 							cantAristasRet++;
 						}
 					}

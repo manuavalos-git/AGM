@@ -13,6 +13,7 @@ public class GrafoConPeso extends Grafos {
 	
 	public void agregarArista(int i, int j,int peso)
 	{
+		verificarPeso(peso);
 		verificarVertice(i);
 		verificarVertice(j);
 		verificarDistintos(i, j);
@@ -22,6 +23,16 @@ public class GrafoConPeso extends Grafos {
 		Arista nueva=new Arista(i,j,peso);
 		if(!listaDeAristas.contains(nueva)) {
 			listaDeAristas.add(nueva);
+		}
+		else {
+			listaDeAristas.remove(nueva);
+			listaDeAristas.add(nueva);
+		}
+	}
+
+	private void verificarPeso(int peso) {
+		if(peso<0) {
+			throw new IllegalArgumentException("El peso no puede ser negativo");
 		}
 	}
 	public void eliminarArista(int i, int j)
@@ -33,15 +44,13 @@ public class GrafoConPeso extends Grafos {
 		A[i][j] = false;
 		A[j][i] = false;
 		
-		for(Arista a: listaDeAristas) {
-			if((a.getVerticeA()==i && a.getVerticeB()==j)||(a.getVerticeA()==j && a.getVerticeB()==i)) {
-				listaDeAristas.remove(a);
-			}
+		Arista aristaA=new Arista(i, j,1);
+	
+		if(listaDeAristas.contains(aristaA)) {
+			listaDeAristas.remove(aristaA);
 		}
-		
 	}
 	public ArrayList<Arista> getListaDeAristas() {
 	return listaDeAristas;
 	}
-	
 }
