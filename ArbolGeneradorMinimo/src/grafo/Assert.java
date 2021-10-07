@@ -18,14 +18,17 @@ public class Assert
 	{
 		int peso=0;
 		int peso1=0;
-		assertEquals(grafo1.vertices()-1, kruskal.getListaDeAristas().size());
 		assertTrue(BFS.esConexo(kruskal));
-		for(Arista a: kruskal.getListaDeAristas()) {
-			peso+=a.getPeso();
+		if(kruskal.getListaDeAristas().size()>=1 && grafo1.getListaDeAristas().size()>=1 && kruskal.vertices()>1 && grafo1.vertices()>1){
+			assertEquals(grafo1.vertices()-1, kruskal.getListaDeAristas().size());
+			for(Arista a: kruskal.getListaDeAristas()) {
+				peso+=a.getPeso();
+			}
+			for(int i=0;i<grafo1.vertices()-1;i++) {
+				peso1+=grafo1.getListaDeAristas().get(i).getPeso();
+			}
+			assertEquals(peso, peso1);
 		}
-		for(int i=0;i<grafo1.vertices();i++) {
-			peso1+=grafo1.getListaDeAristas().get(i).getPeso();
-		}
-		assertEquals(peso, peso1);
+		assertEquals(grafo1.vertices(),kruskal.getListaDeAristas().size() + 1);
 	}
 }

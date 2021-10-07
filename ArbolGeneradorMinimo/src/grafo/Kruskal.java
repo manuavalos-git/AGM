@@ -1,5 +1,8 @@
 package grafo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Kruskal {
 		public GrafoConPeso kruskalBFS(GrafoConPeso grafo) {
 			if(grafo.vertices()==0 || grafo.vertices()==1) {
@@ -9,21 +12,33 @@ public class Kruskal {
 				throw new IllegalArgumentException("El grafo debe ser conexo" );
 			}
 			else {
-				grafo.ordenarListaPorPeso(grafo.getListaDeAristas());
+				ArrayList <Arista> copia= new ArrayList <Arista>();
+				Collections.sort(grafo.getListaDeAristas());
+				copiarContenido(copia,grafo.getListaDeAristas());
 				int cantAristasRet=0;
 				GrafoConPeso grafoRet=new GrafoConPeso(grafo.vertices());
-				while(cantAristasRet<grafo.vertices()) {
-					for(int i=0;i<grafo.getListaDeAristas().size();i++) {
-						if(!BFS.alcanzables(grafoRet,grafo.getListaDeAristas().get(i).getVerticeA()).contains(grafo.getListaDeAristas().get(i).getVerticeB())) {
-							grafoRet.agregarArista(grafo.getListaDeAristas().get(i).getVerticeA(),grafo.getListaDeAristas().get(i).getVerticeB(),grafo.getListaDeAristas().get(i).getPeso());
-							i=grafo.getListaDeAristas().size();
+				while(cantAristasRet<grafo.vertices()-1) {
+					int i=0;
+					while(i<copia.size()) {
+						if(!BFS.alcanzables(grafoRet,copia.get(i).getVerticeA()).contains(copia.get(i).getVerticeB())) {
+							grafoRet.agregarArista(copia.get(i).getVerticeA(),copia.get(i).getVerticeB(),copia.get(i).getPeso());
+							copia.remove(i);
+							i=copia.size();
 							cantAristasRet++;
 						}
+						else{
+							i++;
+						}	
 					}
 				}
 				return grafoRet;
 			}
 			
+		}
+		private void copiarContenido(ArrayList<Arista> ret, ArrayList<Arista> listaDeAristas) {
+			for(Arista a: listaDeAristas){
+				ret.add(a);
+			}
 		}
 		public GrafoConPeso kruskalUnion(GrafoConPeso grafo) {
 			if(grafo.vertices()==0 || grafo.vertices()==1) {
@@ -33,19 +48,24 @@ public class Kruskal {
 				throw new IllegalArgumentException("El grafo debe ser conexo" );
 			}
 			else {
-				grafo.ordenarListaPorPeso(grafo.getListaDeAristas());
+				ArrayList <Arista> copia= new ArrayList <Arista>();
+				Collections.sort(grafo.getListaDeAristas());
+				copiarContenido(copia,grafo.getListaDeAristas());
 				int cantAristasRet=0;
 				GrafoConPeso grafoRet=new GrafoConPeso(grafo.vertices());
 				UnionFind unionFind=new UnionFind(grafo.vertices());
-				while(cantAristasRet<grafo.vertices()) {
-					for(int i=0;i<grafo.getListaDeAristas().size();i++) {
-						if(!unionFind.find(grafo.getListaDeAristas().get(i).getVerticeA(),grafo.getListaDeAristas().get(i).getVerticeB())) {
-							unionFind.union(grafo.getListaDeAristas().get(i).getVerticeA(), grafo.getListaDeAristas().get(i).getVerticeB());
-							grafoRet.agregarArista(grafo.getListaDeAristas().get(i).getVerticeA(),grafo.getListaDeAristas().get(i).getVerticeB(),grafo.getListaDeAristas().get(i).getPeso());
-							i=grafo.getListaDeAristas().size();
+				while(cantAristasRet<grafo.vertices()-1) {
+					int i=0;
+					while(i<copia.size()) {
+						if(!unionFind.find(copia.get(i).getVerticeA(),copia.get(i).getVerticeB())) {
+							unionFind.union(copia.get(i).getVerticeA(), copia.get(i).getVerticeB());
+							grafoRet.agregarArista(copia.get(i).getVerticeA(),copia.get(i).getVerticeB(),copia.get(i).getPeso());
+							copia.remove(i);
+							i=copia.size();
 							cantAristasRet++;
 						}
 					}
+					
 				}
 				return grafoRet;
 			}

@@ -1,6 +1,6 @@
 package grafo;
 
-public class Arista{
+public class Arista implements Comparable <Arista>{
 	private int verticeA;
 	private int verticeB;
 	private int peso;
@@ -34,4 +34,16 @@ public class Arista{
 		Arista otro= (Arista)obj;
 		return( (this.verticeA==otro.verticeA && this.verticeB==otro.verticeB)||(this.verticeA==otro.verticeB && this.verticeB==otro.verticeA)) ;
 	}
+
+	@Override
+	public int compareTo(Arista o) {
+		if(this.getPeso()<o.getPeso()) {
+			return -1;
+		}
+		if(this.getPeso() == o.getPeso()) {
+			return 0;
+		}
+		return 1;
+	}
+
 }

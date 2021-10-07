@@ -1,8 +1,6 @@
 package grafo;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class GrafoConPeso extends Grafos {
 
@@ -51,20 +49,6 @@ public class GrafoConPeso extends Grafos {
 		if(listaDeAristas.contains(aristaA)) {
 			listaDeAristas.remove(aristaA);
 		}
-	}
-	protected void ordenarListaPorPeso(ArrayList<Arista> aristasGrafo) {
-		Collections.sort(aristasGrafo,new Comparator<Arista>() {
-			@Override
-			public int compare(Arista a1, Arista a2) {
-				if(a1.getPeso()<a2.getPeso()) {
-					return -1;
-				}
-				if(a1.getPeso() == a2.getPeso()) {
-					return 0;
-				}
-				return 1;
-			}
-		});
 	}
 	public ArrayList<Arista> getListaDeAristas() {
 	return listaDeAristas;
