@@ -22,7 +22,7 @@ public class Grafos {
 		}
 
 		// Cantidad de vertices
-		protected int vertices()
+		public int vertices()
 		{
 			return A.length;
 		}

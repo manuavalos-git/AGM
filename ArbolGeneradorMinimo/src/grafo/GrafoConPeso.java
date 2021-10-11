@@ -2,7 +2,7 @@ package grafo;
 
 import java.util.ArrayList;
 
-public class GrafoConPeso extends Grafos {
+public class GrafoConPeso extends Grafos implements Comparable<GrafoConPeso>{
 
 	private ArrayList <Arista> listaDeAristas;
 	
@@ -52,5 +52,16 @@ public class GrafoConPeso extends Grafos {
 	}
 	public ArrayList<Arista> getListaDeAristas() {
 	return listaDeAristas;
+	}
+
+	@Override
+	public int compareTo(GrafoConPeso o) {
+		if(this.vertices()<o.vertices()) {
+			return -1;
+		}
+		if(this.vertices() == o.vertices()) {
+			return 0;
+		}
+		return 1;
 	}
 }
