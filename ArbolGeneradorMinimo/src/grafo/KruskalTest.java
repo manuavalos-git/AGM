@@ -10,7 +10,7 @@ public class KruskalTest {
 		GrafoConPeso grafo1=inicializarGrafoFeliz();
 		
 		GrafoConPeso grafo2=kruskal.kruskalBFS(grafo1);
-	
+		grafo2=kruskal.kruskalBFS(grafo2);
 		
 		Assert.grafoMinimoEsperado(grafo1, grafo2);
 	}
@@ -21,7 +21,7 @@ public class KruskalTest {
 		GrafoConPeso grafo1=inicializarGrafoFeliz();
 		
 		GrafoConPeso grafo2=kruskal.kruskalUnion(grafo1);
-	
+		grafo2=kruskal.kruskalUnion(grafo2);
 		
 		Assert.grafoMinimoEsperado(grafo1, grafo2);
 	}

@@ -1,12 +1,13 @@
 package controlador;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
 import grafo.GrafoConPeso;
+import grafo.Kruskal;
 import interfaz.Usuario;
 
 public class Controlador {
@@ -52,14 +53,14 @@ public class Controlador {
 	}
 	private void crearGrafos() {
 		for(int i=0;i<8;i++) {
-			grafos.add(new GrafoConPeso(new Random().nextInt(50)+1));
+			grafos.add(new GrafoConPeso(new Random().nextInt(2)+1));
 		}
 		Collections.sort(grafos);
 	}
 	private void agregarAristas() {
 		for(GrafoConPeso g: grafos) {
 			conexar(g);
-			int masAristas=new Random().nextInt(80)+1;
+			int masAristas=new Random().nextInt(10)+1;
 			agregarRestodeAristas(g,masAristas);
 		}
 		
@@ -88,15 +89,45 @@ public class Controlador {
 	
 	}
 	private void controlGraficar() {
-		ActionListener bG=new ActionListener() {
+		ActionListener bGr=new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//aca usar jfreechart
+				for(int i=0;i<grafos.size();i++) {
+						usuario.getTable().getModel().setValueAt(promedioBFS(grafos.get(i)), i, 3);
+						usuario.getTable().getModel().setValueAt(promedioUnion(grafos.get(i)), i, 4);
+//					usuario.getDatos().setValue(promedioBFS(g),"BFS", "Grafo con V:"+g.vertices()+" I:"+ grafos.indexOf(g));
+//					usuario.getDatos().setValue(promedioUnion(g),"BFS", "Grafo con V:"+g.vertices()+" I:"+ grafos.indexOf(g));
+				}
+				
 			}
-			
+
+			private long promedioBFS(GrafoConPeso g) {
+				long promedio=0;
+				Kruskal kruskal=new Kruskal();
+				for(int i=0;i<10;i++) {
+					long inico=System.nanoTime();
+					kruskal.kruskalBFS(g);
+					long fin=System.nanoTime();
+					long tiempo=fin-inico;
+					promedio+=tiempo;
+				}
+				return promedio/10;
+			}
+			private long promedioUnion(GrafoConPeso g) {
+				long promedio=0;
+				Kruskal kruskal=new Kruskal();
+				for(int i=0;i<10;i++) {
+					long inico=System.nanoTime();
+					kruskal.kruskalUnion(g);
+					long fin=System.nanoTime();
+					long tiempo=fin-inico;
+					promedio+=tiempo;
+				}
+				return promedio/10;
+			}
 		};
-		this.usuario.getBotonGraficar().addActionListener(bG);
+		this.usuario.getBotonGraficar().addActionListener(bGr);
 	}
 
 	private void controlEmpezar() {

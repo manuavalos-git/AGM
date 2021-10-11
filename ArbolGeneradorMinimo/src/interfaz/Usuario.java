@@ -1,18 +1,18 @@
 package interfaz;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import java.awt.Font;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 public class Usuario {
 
@@ -77,7 +77,7 @@ public class Usuario {
 		scrollPane.setFocusable(false);
 		scrollPane.setWheelScrollingEnabled(false);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 11, 390, 155);
+		scrollPane.setBounds(10, 11, 324, 155);
 		panel.add(scrollPane);
 		scrollPane.setVisible(false);
 		
@@ -89,17 +89,17 @@ public class Usuario {
 	
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"Grafo", "Cantidad de Vertice", "Cantidad de Aristas"
+				"Grafo", "Cantidad de Vertice", "Cantidad de Aristas", "Tiempo BFS", "Tiempo Union-Find"
 			}
 		) {
 			/**
@@ -107,7 +107,7 @@ public class Usuario {
 			 */
 			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] {
-				false, false, false
+				true, true, true, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -116,11 +116,10 @@ public class Usuario {
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
-		
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
 	
-		
 	}
-
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
