@@ -21,8 +21,8 @@ public class Usuario {
 	private JProgressBar progressBar;
 	private JLabel lblTitulo;
 	private JPanel panel;
-	private JTable table;
-	private JScrollPane scrollPane;
+	private JTable table,table2;
+	private JScrollPane scrollPane,scrollPane2;
 
 	/**
 	 * Create the application.
@@ -43,12 +43,6 @@ public class Usuario {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		this.lblTitulo = new JLabel("Kruskal\r\n");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 37));
-		lblTitulo.setBounds(140, 139, 300, 90);
-		panel.add(lblTitulo);
-		
 		this.botonEmpezar = new JButton();
 		botonEmpezar.setText("empezar");
 		botonEmpezar.setBounds(243, 355, 100, 20);
@@ -56,19 +50,19 @@ public class Usuario {
 		
 		this.botonGenerarNuevosGrafos = new JButton();
 		botonGenerarNuevosGrafos.setText("generar nuevos grafos\r\n");
-		botonGenerarNuevosGrafos.setBounds(410, 15, 161, 20);
+		botonGenerarNuevosGrafos.setBounds(109, 324, 161, 20);
 		panel.add(botonGenerarNuevosGrafos);
 		botonGenerarNuevosGrafos.setVisible(false);
 		
 		this.botonGraficar = new JButton();
 		botonGraficar.setEnabled(false);
-		botonGraficar.setText("graficar kruskal");
-		botonGraficar.setBounds(425, 289, 146, 20);
+		botonGraficar.setText("graficar tiempos");
+		botonGraficar.setBounds(410, 324, 146, 20);
 		panel.add(botonGraficar);
 		botonGraficar.setVisible(false);
 		
 		this.progressBar = new JProgressBar();
-		progressBar.setBounds(58, 355, 146, 14);
+		progressBar.setBounds(109, 288, 146, 14);
 		panel.add(progressBar);
 		progressBar.setVisible(false);
 		//panel.add(table);
@@ -77,55 +71,49 @@ public class Usuario {
 		scrollPane.setFocusable(false);
 		scrollPane.setWheelScrollingEnabled(false);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 11, 324, 155);
-		panel.add(scrollPane);
+		scrollPane.setBounds(10, 122, 353, 155);
 		scrollPane.setVisible(false);
+		panel.add(scrollPane);
+		
+		this.scrollPane2= new JScrollPane();
+		scrollPane.setFocusable(false);
+		scrollPane.setWheelScrollingEnabled(false);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane2.setBounds(410, 122, 146, 155);
+		scrollPane2.setVisible(false);
+		panel.add(scrollPane2);
+		
+		this.lblTitulo = new JLabel("Kruskal\r\n");
+		lblTitulo.setBounds(225, 177, 118, 45);
+		panel.add(lblTitulo);
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 37));
+	
 		
 		this.table = new JTable();
 		table.setFocusable(false);
 		table.setAutoscrolls(false);
 		table.setRowSelectionAllowed(false);
-		scrollPane.setViewportView(table);
-	
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Grafo", "Cantidad de Vertice", "Cantidad de Aristas", "Tiempo BFS", "Tiempo Union-Find"
-			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				true, true, true, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(4).setResizable(false);
-	
+		
+		this.table2 = new JTable();
+		table2.setFocusable(false);
+		table2.setAutoscrolls(false);
+		table2.setRowSelectionAllowed(false);
+
 	}
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
+	public JScrollPane getScrollPane2() {
+		return scrollPane2;
+	}
 
 	public JTable getTable() {
 		return table;
+	}
+	
+	public JTable getTable2() {
+		return table2;
 	}
 
 	public JPanel getPanel() {
