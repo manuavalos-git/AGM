@@ -16,34 +16,34 @@ public class ContenedorDeGrafos {
 		agregarAristas();
 		return matrizGrafos();
 	}
-	public Double[][] generarTiempos() {
-		new Double[][] matriz=new Double[grafos.size()][2];
+	public Long[][] generarTiempos() {
+		Long [][] matriz=new Long[grafos.size()][2];
 		for(int i=0;i<grafos.size();i++) {
 			matriz[i][0]=promedioBFS(grafos.get(i));
-			matriz[i][2]=promedioUnion(grafos.get(i));
+			matriz[i][1]=promedioUnion(grafos.get(i));
 		}
 		return matriz;
 	}
-	private Double promedioBFS(GrafoConPeso g) {
-		Double promedio=0.0;
+	private Long promedioBFS(GrafoConPeso g) {
+		Long promedio=(long) 0;
 		Kruskal kruskal=new Kruskal();
 		for(int i=0;i<10;i++) {
-			Double inico=(double) System.nanoTime();
+			Long inico=System.nanoTime()/1000;
 			kruskal.kruskalBFS(g);
-			Double fin=(double) System.nanoTime();
-			Double tiempo=fin-inico;
+			Long fin=System.nanoTime()/1000;
+			Long tiempo=fin-inico;
 			promedio+=tiempo;
 		}
 		return promedio/10;
 	}
-	private Double promedioUnion(GrafoConPeso g) {
-		Double promedio=0.0;
+	private Long promedioUnion(GrafoConPeso g) {
+	    Long promedio=(long) 0;
 		Kruskal kruskal=new Kruskal();
 		for(int i=0;i<10;i++) {
-			Double inico=(double) System.nanoTime();
+			Long inicio=System.nanoTime()/1000;
 			kruskal.kruskalUnion(g);
-			Double fin=(double) System.nanoTime();
-			Double tiempo=fin-inico;
+			Long fin=System.nanoTime()/1000;//microsegundos
+			Long tiempo=fin-inicio;
 			promedio+=tiempo;
 		}
 		return promedio/10;
@@ -52,8 +52,8 @@ public class ContenedorDeGrafos {
 		this.grafos.clear();
 	}
 	private void crearGrafos() {
-		for(int i=0;i<8;i++) {
-			grafos.add(new GrafoConPeso(new Random().nextInt(2)+1));
+		for(int i=0;i<17;i++) {
+			grafos.add(new GrafoConPeso(new Random().nextInt(80)+2));
 		}
 		Collections.sort(grafos);
 	}

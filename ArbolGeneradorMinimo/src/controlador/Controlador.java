@@ -41,6 +41,7 @@ public class Controlador {
 					}
 				));
 				usuario.getScrollPane().setViewportView(usuario.getTable());
+				usuario.getBotonGraficar().setEnabled(true);
 			}
 		};
 		this.usuario.getBotonGenerarNuevosGrafos().addActionListener(bG);
@@ -52,7 +53,7 @@ public class Controlador {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				usuario.getTable2().setModel(new DefaultTableModel(
-						contenedor.generarGrafos(),
+						contenedor.generarTiempos(),
 						new String[] {
 						"Tiempo BFS", "Tiempo Union-Find"
 						}
@@ -74,6 +75,8 @@ public class Controlador {
 				usuario.getBotonGraficar().setVisible(true);
 				usuario.getScrollPane().setVisible(true);
 				usuario.getScrollPane2().setVisible(true);
+				usuario.getLblMicrosegundos().setVisible(true);
+				usuario.getLblValores().setVisible(true);
 			}
 			
 		};

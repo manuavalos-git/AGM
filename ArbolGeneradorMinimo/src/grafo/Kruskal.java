@@ -64,6 +64,9 @@ public class Kruskal {
 							i=copia.size();
 							cantAristasRet++;
 						}
+						else {
+							i++;
+						}
 					}
 					
 				}

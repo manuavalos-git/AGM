@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
@@ -17,11 +16,12 @@ public class Usuario {
 
 	private JFrame frame;
 	private JButton botonGraficar,botonEmpezar,botonGenerarNuevosGrafos;
-	private JProgressBar progressBar;
 	private JLabel lblTitulo;
 	private JPanel panel;
 	private JTable table,table2;
 	private JScrollPane scrollPane,scrollPane2;
+	private JLabel lblValores;
+	private JLabel lblMicrosegundos;
 
 	/**
 	 * Create the application.
@@ -35,7 +35,7 @@ public class Usuario {
 	 */
 	private void initialize() {
 		this.frame = new JFrame();
-		frame.setBounds(100, 100, 596, 450);
+		frame.setBounds(100, 100, 642, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	    this.panel = new JPanel();
@@ -43,34 +43,31 @@ public class Usuario {
 		panel.setLayout(null);
 		
 		this.botonEmpezar = new JButton();
-		botonEmpezar.setText("empezar");
-		botonEmpezar.setBounds(243, 355, 100, 20);
+		botonEmpezar.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		botonEmpezar.setText("Empezar");
+		botonEmpezar.setBounds(263, 344, 100, 20);
 		panel.add(botonEmpezar);
 		
 		this.botonGenerarNuevosGrafos = new JButton();
-		botonGenerarNuevosGrafos.setText("generar nuevos grafos\r\n");
-		botonGenerarNuevosGrafos.setBounds(109, 324, 161, 20);
+		botonGenerarNuevosGrafos.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		botonGenerarNuevosGrafos.setText("Generar nuevos grafos\r\n");
+		botonGenerarNuevosGrafos.setBounds(96, 380, 161, 20);
 		panel.add(botonGenerarNuevosGrafos);
 		botonGenerarNuevosGrafos.setVisible(false);
 		
 		this.botonGraficar = new JButton();
 		botonGraficar.setEnabled(false);
-		botonGraficar.setText("graficar tiempos");
-		botonGraficar.setBounds(410, 324, 146, 20);
+		botonGraficar.setText("Graficar tiempos");
+		botonGraficar.setBounds(424, 380, 146, 20);
 		panel.add(botonGraficar);
 		botonGraficar.setVisible(false);
-		
-		this.progressBar = new JProgressBar();
-		progressBar.setBounds(109, 288, 146, 14);
-		panel.add(progressBar);
-		progressBar.setVisible(false);
 		//panel.add(table);
 		
 		this.scrollPane = new JScrollPane();
 		scrollPane.setFocusable(false);
 		scrollPane.setWheelScrollingEnabled(false);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 122, 353, 155);
+		scrollPane.setBounds(10, 43, 353, 321);
 		scrollPane.setVisible(false);
 		panel.add(scrollPane);
 		
@@ -78,7 +75,7 @@ public class Usuario {
 		scrollPane.setFocusable(false);
 		scrollPane.setWheelScrollingEnabled(false);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane2.setBounds(410, 122, 146, 155);
+		scrollPane2.setBounds(378, 43, 238, 321);
 		scrollPane2.setVisible(false);
 		panel.add(scrollPane2);
 		
@@ -87,6 +84,20 @@ public class Usuario {
 		panel.add(lblTitulo);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 37));
+		
+		this.lblValores = new JLabel("Valores de los grafos generados :");
+		lblValores.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblValores.setHorizontalAlignment(SwingConstants.CENTER);
+		lblValores.setBounds(65, 11, 215, 21);
+		lblValores.setVisible(false);
+		panel.add(lblValores);
+		
+		this.lblMicrosegundos = new JLabel("Microsegundos :");
+		lblMicrosegundos.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblMicrosegundos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMicrosegundos.setBounds(424, 11, 146, 21);
+		lblMicrosegundos.setVisible(false);
+		panel.add(lblMicrosegundos);
 	
 		
 		this.table = new JTable();
@@ -100,6 +111,14 @@ public class Usuario {
 		table2.setRowSelectionAllowed(false);
 
 	}
+	public JLabel getLblValores() {
+		return lblValores;
+	}
+
+	public JLabel getLblMicrosegundos() {
+		return lblMicrosegundos;
+	}
+
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
@@ -129,10 +148,6 @@ public class Usuario {
 
 	public JButton getBotonGenerarNuevosGrafos() {
 		return botonGenerarNuevosGrafos;
-	}
-
-	public JProgressBar getProgressBar() {
-		return progressBar;
 	}
 
 	public JLabel getLblTitulo() {
