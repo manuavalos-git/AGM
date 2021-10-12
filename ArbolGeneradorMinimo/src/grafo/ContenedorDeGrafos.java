@@ -52,8 +52,8 @@ public class ContenedorDeGrafos {
 		this.grafos.clear();
 	}
 	private void crearGrafos() {
-		for(int i=0;i<17;i++) {
-			grafos.add(new GrafoConPeso(new Random().nextInt(80)+2));
+		for(int i=0;i<18;i++) {
+			grafos.add(new GrafoConPeso(new Random().nextInt(100)));
 		}
 		Collections.sort(grafos);
 	}
