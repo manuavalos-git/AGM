@@ -12,12 +12,24 @@ public class EdicionDeAristasTest
 		Grafo grafo = new Grafo(5);
 		grafo.agregarArista(-1, 3);
 	}
+	@Test(expected = IllegalArgumentException.class)
+	public void primerVerticeNegativoPesoTest()
+	{
+		GrafoConPeso grafo = new GrafoConPeso(5);
+		grafo.agregarArista(-1, 3,2);
+	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void primerVerticeExcedidoTest()
 	{
 		Grafo grafo = new Grafo(5);
 		grafo.agregarArista(5, 2);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void primerVerticeExcedidoPesoTest()
+	{
+		GrafoConPeso grafo = new GrafoConPeso(5);
+		grafo.agregarArista(5, 2, 1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -26,12 +38,29 @@ public class EdicionDeAristasTest
 		Grafo grafo = new Grafo(5);
 		grafo.agregarArista(2, -1);
 	}
-	
+	@Test(expected = IllegalArgumentException.class)
+	public void segundoVerticeNegativoPesoTest()
+	{
+		GrafoConPeso grafo = new GrafoConPeso(5);
+		grafo.agregarArista(2, -1, 4);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void pesoNegativoTest()
+	{
+		GrafoConPeso grafo = new GrafoConPeso(5);
+		grafo.agregarArista(2, 1, -1);
+	}
 	@Test(expected = IllegalArgumentException.class)
 	public void segundoVerticeExcedidoTest()
 	{
 		Grafo grafo = new Grafo(5);
 		grafo.agregarArista(2, 5);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void segundoVerticeExcedidoPesoTest()
+	{
+		GrafoConPeso grafo = new GrafoConPeso(5);
+		grafo.agregarArista(2, 5, 4);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -39,6 +68,12 @@ public class EdicionDeAristasTest
 	{
 		Grafo grafo = new Grafo(5);
 		grafo.agregarArista(2, 2);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void agregarLoopPesoTest()
+	{
+		GrafoConPeso grafo = new GrafoConPeso(5);
+		grafo.agregarArista(2, 2, 8);
 	}
 
 	@Test
@@ -53,7 +88,7 @@ public class EdicionDeAristasTest
 	{
 		GrafoConPeso grafo = new GrafoConPeso(5);
 		Arista arista=new Arista(2, 3, 4);
-		grafo.agregarArista(2, 3,4);
+		grafo.agregarArista(2, 3, 4);
 		assertTrue( grafo.existeArista(2, 3) && grafo.getListaDeAristas().contains(arista));
 	}
 	@Test

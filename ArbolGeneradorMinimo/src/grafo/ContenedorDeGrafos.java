@@ -17,7 +17,7 @@ public class ContenedorDeGrafos {
 		return matrizGrafos();
 	}
 	public Long[][] generarTiempos() {
-		Long [][] matriz=new Long[grafos.size()][2];
+		Long [][] matriz =new Long[grafos.size()][2];
 		for(int i=0;i<grafos.size();i++) {
 			matriz[i][0]=promedioBFS(grafos.get(i));
 			matriz[i][1]=promedioUnion(grafos.get(i));
