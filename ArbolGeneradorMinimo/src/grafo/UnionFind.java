@@ -15,6 +15,8 @@ public class UnionFind {
 		 }
 	 }
 	 public void union(int i,int j) {
+		 verificarIguales(i,j);
+		 verificarNegativo(i,j);
 		 int raizI=root(i);
 		 int raizJ=root(j);
 		 int sumaDeComponentes = padres.get(raizI).getCantComponente() + padres.get(raizJ).getCantComponente();
@@ -24,11 +26,25 @@ public class UnionFind {
 	 	}
 		 else pathCompression(j,raizI,sumaDeComponentes);
 	}
+	private void verificarIguales(int raizI, int raizJ) {
+		if(raizI==raizJ) {
+			 throw new IllegalArgumentException("las argumentos no pueden ser iguales");
+		 }
+	}
+	private void verificarNegativo(int raizI, int raizJ) {
+		if(raizI<0 || raizJ<0) {
+			 throw new IllegalArgumentException("los argumentos no pueden ser negativas");
+		 }
+	}
 	 private void pathCompression(int i, int root, int sumaDeComponentes) {
 		padres.get(i).setPadre(root);
 		padres.get(root).setCantComponente(sumaDeComponentes);
 	 }
 	 public boolean find(int i,int j) {
+		 verificarNegativo(i,j);
+		 if(i==j) {
+			 return true;
+		 }
 		 return root(i)==root(j);
 	 }
 	 private int root(int i) {
