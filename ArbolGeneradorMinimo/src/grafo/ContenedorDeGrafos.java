@@ -10,9 +10,9 @@ public class ContenedorDeGrafos {
 	public ContenedorDeGrafos() {
 		this.grafos=new ArrayList<GrafoConPeso>();
 	}
-	public Integer [][] generarGrafos(int cantGrafos){
+	public Integer [][] generarGrafos(){
 		limpiarGrafosViejos();
-		crearGrafos(cantGrafos);
+		crearGrafos();
 		agregarAristas();
 		return matrizGrafos();
 	}
@@ -51,8 +51,8 @@ public class ContenedorDeGrafos {
 	private void limpiarGrafosViejos() {
 		this.grafos.clear();
 	}
-	private void crearGrafos(int cantGrafos) {
-		for(int i=0;i<cantGrafos;i++) {
+	private void crearGrafos() {
+		for(int i=0;i<26;i++) {
 			grafos.add(new GrafoConPeso(new Random().nextInt(100)));
 		}
 		Collections.sort(grafos);

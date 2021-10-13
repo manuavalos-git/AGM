@@ -13,10 +13,12 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Insets;
+import java.awt.Frame;
+import java.awt.Toolkit;
 
 public class Usuario {
 
-	private JFrame frame;
+	private JFrame frmKruskal;
 	private JButton botonGraficar,botonEmpezar,botonGenerarNuevosGrafos;
 	private JLabel lblTitulo;
 	private JPanel panel;
@@ -36,13 +38,17 @@ public class Usuario {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		this.frame = new JFrame();
-		frame.setBounds(100, 100, 642, 450);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frmKruskal = new JFrame();
+		frmKruskal.setIconImage(Toolkit.getDefaultToolkit().getImage(Usuario.class.getResource("/multimedia/icono.png")));
+		frmKruskal.setTitle("Kruskal");
+		frmKruskal.setExtendedState(Frame.MAXIMIZED_BOTH);
+//		frame.setResizable(false);
+		frmKruskal.setBounds(100, 100, 1281, 672);
+		frmKruskal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	    this.panel = new JPanel();
 	    panel.setBackground(new Color(255, 228, 225));
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		frmKruskal.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		this.botonEmpezar = new JButton();
@@ -52,9 +58,9 @@ public class Usuario {
 		botonEmpezar.setIconTextGap(0);
 		botonEmpezar.setBorder(null);
 		botonEmpezar.setBackground(new Color(176, 224, 230));
-		botonEmpezar.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		botonEmpezar.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonEmpezar.setText("Empezar");
-		botonEmpezar.setBounds(242, 325, 121, 39);
+		botonEmpezar.setBounds(570, 537, 121, 39);
 		panel.add(botonEmpezar);
 		
 		this.botonGenerarNuevosGrafos = new JButton();
@@ -62,20 +68,20 @@ public class Usuario {
 		botonGenerarNuevosGrafos.setBorder(null);
 		botonGenerarNuevosGrafos.setForeground(new Color(0, 0, 0));
 		botonGenerarNuevosGrafos.setBackground(new Color(176, 224, 230));
-		botonGenerarNuevosGrafos.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		botonGenerarNuevosGrafos.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonGenerarNuevosGrafos.setText("Generar nuevos grafos\r\n");
-		botonGenerarNuevosGrafos.setBounds(78, 368, 187, 32);
+		botonGenerarNuevosGrafos.setBounds(219, 587, 263, 32);
 		panel.add(botonGenerarNuevosGrafos);
 		botonGenerarNuevosGrafos.setVisible(false);
 		
 		this.botonGraficar = new JButton();
-		botonGraficar.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		botonGraficar.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonGraficar.setFocusable(false);
 		botonGraficar.setBorder(null);
 		botonGraficar.setBackground(new Color(176, 224, 230));
 		botonGraficar.setEnabled(false);
 		botonGraficar.setText("Graficar tiempos");
-		botonGraficar.setBounds(424, 368, 146, 32);
+		botonGraficar.setBounds(922, 587, 229, 32);
 		panel.add(botonGraficar);
 		botonGraficar.setVisible(false);
 		//panel.add(table);
@@ -85,39 +91,39 @@ public class Usuario {
 		scrollPane.setFocusable(false);
 		scrollPane.setWheelScrollingEnabled(false);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 43, 353, 314);
+		scrollPane.setBounds(10, 61, 703, 495);
 		scrollPane.getViewport().setBackground(new Color(255, 240, 245));
 		scrollPane.setVisible(false);
 		panel.add(scrollPane);
 		
 		this.scrollPane2= new JScrollPane();
+		scrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane2.setFocusable(false);
 		scrollPane2.setWheelScrollingEnabled(false);
 		scrollPane2.setBackground(new Color(255, 240, 245));
-		scrollPane.setFocusable(false);
-		scrollPane.setWheelScrollingEnabled(false);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane2.setBounds(378, 43, 238, 314);
+		scrollPane2.setBounds(783, 61, 483, 495);
 		scrollPane2.getViewport().setBackground(new Color(255, 240, 245));
 		scrollPane2.setVisible(false);
 		panel.add(scrollPane2);
 		
 		this.lblTitulo = new JLabel("Kruskal\r\n");
-		lblTitulo.setBounds(123, 110, 353, 129);
+		lblTitulo.setBounds(312, 201, 635, 215);
 		panel.add(lblTitulo);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 53));
+		lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 90));
 		
 		this.lblValores = new JLabel("Valores de los grafos generados :");
-		lblValores.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblValores.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		lblValores.setHorizontalAlignment(SwingConstants.CENTER);
-		lblValores.setBounds(65, 11, 215, 21);
+		lblValores.setBounds(146, 11, 414, 39);
 		lblValores.setVisible(false);
 		panel.add(lblValores);
 		
 		this.lblMicrosegundos = new JLabel("Microsegundos :");
-		lblMicrosegundos.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblMicrosegundos.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		lblMicrosegundos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMicrosegundos.setBounds(424, 11, 146, 21);
+		lblMicrosegundos.setBounds(922, 11, 229, 39);
 		lblMicrosegundos.setVisible(false);
 		panel.add(lblMicrosegundos);
 	
@@ -126,7 +132,8 @@ public class Usuario {
 		table.setBackground(new Color(255, 240, 245));
 		table.setFocusable(false);
 		table.setAutoscrolls(false);
-		table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+		table.setRowHeight(18);
+		table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15));
 		table.getTableHeader().setOpaque(false);
 		table.getTableHeader().setBorder(null);
 		table.getTableHeader().setBackground(new Color(176, 224, 230));
@@ -135,7 +142,9 @@ public class Usuario {
 		this.table2 = new JTable();
 		table2.setBackground(new Color(255, 240, 245));
 		table2.setFocusable(false);
-		table2.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+		table2.setAutoscrolls(false);
+		table2.setRowHeight(18);
+		table2.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 15));
 		table2.getTableHeader().setOpaque(false);
 		table2.getTableHeader().setBackground(new Color(176, 224, 230));
 		table2.getTableHeader().setBorder(null);
@@ -187,6 +196,6 @@ public class Usuario {
 	}
 
 	public JFrame getFrame() {
-			return this.frame;
+			return this.frmKruskal;
 	}
 }

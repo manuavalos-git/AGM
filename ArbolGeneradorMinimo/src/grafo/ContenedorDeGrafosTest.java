@@ -10,7 +10,7 @@ public class ContenedorDeGrafosTest {
 	public void testGenerarGrafos() {
 		ContenedorDeGrafos contenedor=new ContenedorDeGrafos();
 		
-		Integer[][] matriz=contenedor.generarGrafos(4);
+		Integer[][] matriz=contenedor.generarGrafos();
 		
 		assertTrue((matriz.length==4));
 	}
@@ -18,7 +18,7 @@ public class ContenedorDeGrafosTest {
 	@Test
 	public void testGenerarTiempos() {
 		ContenedorDeGrafos contenedor=new ContenedorDeGrafos();
-		contenedor.generarGrafos(6);
+		contenedor.generarGrafos();
 		
 		Long[][] matriz=contenedor.generarTiempos();
 		

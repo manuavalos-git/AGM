@@ -34,7 +34,7 @@ public class Controlador {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				usuario.getTable().setModel(new DefaultTableModel(
-					contenedor.generarGrafos(18),
+					contenedor.generarGrafos(),
 					new String[] {
 					"Grafo", "Cantidad de Vertice", "Cantidad de Aristas"
 					}
