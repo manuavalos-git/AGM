@@ -5,13 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 import interfaz.Usuario;
 import controlador.Controlador;
+import grafo.ContenedorDeGrafos;
 
 public class MVC {
 	public static void main(String[] args) {
 		
 		//inicializo objetos
 		Usuario usuario=new Usuario();
-		Controlador controlador=new Controlador(usuario);
+		ContenedorDeGrafos contenedor=new ContenedorDeGrafos();
+		Controlador controlador=new Controlador(usuario,contenedor);
 		
 		try
 		 {

@@ -10,9 +10,9 @@ public class Controlador {
 	private Usuario usuario;
 	private ContenedorDeGrafos contenedor;
 	
-	public Controlador(Usuario usuario) {
+	public Controlador(Usuario usuario,ContenedorDeGrafos contenedor) {
 		this.usuario=usuario;
-		this.contenedor=new ContenedorDeGrafos();
+		this.contenedor=contenedor;
 	}
 
 	public void iniciarControlador() {
