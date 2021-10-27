@@ -9,28 +9,28 @@ public class ConsultaDeVecinosTest
 	@Test(expected = IllegalArgumentException.class)
 	public void verticeNegativoTest()
 	{
-		Grafos grafo = new Grafos(5);
+		Grafo grafo = new Grafo(5);
 		grafo.vecinos(-1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void verticeExcedidoTest()
 	{
-		Grafos grafo = new Grafos(5);
+		Grafo grafo = new Grafo(5);
 		grafo.vecinos(5);
 	}
 
 	@Test
 	public void todosAisladosTest()
 	{
-		Grafos grafo = new Grafos(5);
+		Grafo grafo = new Grafo(5);
 		assertEquals(0, grafo.vecinos(2).size());
 	}
 	
 	@Test
 	public void verticeUniversalTest()
 	{
-		Grafo grafo = new Grafo(4);
+		GrafoSimple grafo = new GrafoSimple(4);
 		grafo.agregarArista(1, 0);
 		grafo.agregarArista(1, 2);
 		grafo.agregarArista(1, 3);
@@ -53,7 +53,7 @@ public class ConsultaDeVecinosTest
 	@Test
 	public void verticeNormalTest()
 	{
-		Grafo grafo = new Grafo(5);
+		GrafoSimple grafo = new GrafoSimple(5);
 		grafo.agregarArista(1, 3);
 		grafo.agregarArista(2, 3);
 		grafo.agregarArista(2, 4);
