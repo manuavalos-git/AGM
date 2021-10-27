@@ -12,7 +12,7 @@ public class ContenedorDeGrafosTest {
 		
 		Integer[][] matriz=contenedor.generarGrafos();
 		
-		assertTrue((matriz.length==4));
+		assertTrue((matriz.length==26));
 	}
 
 	@Test
@@ -22,7 +22,7 @@ public class ContenedorDeGrafosTest {
 		
 		Long[][] matriz=contenedor.generarTiempos();
 		
-		assertTrue((matriz.length==6));
+		assertTrue((matriz.length==26));
 	}
 	@Test
 	public void tiemposSinGrafos() {
